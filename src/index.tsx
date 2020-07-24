@@ -5,7 +5,6 @@
 // their comparison function in case a consumer of these components is
 // using hot module reloading
 import * as React from "react";
-import { areComponentsEqual } from "react-hot-loader";
 import styled from "styled-components";
 
 interface DropdownMenuProps {
@@ -92,23 +91,13 @@ export class DropdownMenu extends React.PureComponent<
       <DropdownDiv onKeyUp={this.handleKeyUp}>
         {React.Children.map(this.props.children, child => {
           const childElement = child as React.ReactElement<any>;
-          if (
-            areComponentsEqual(
-              childElement.type as React.ComponentType<any>,
-              DropdownTrigger
-            )
-          ) {
+          if (childElement.type === DropdownTrigger) {
             return React.cloneElement(childElement, {
               onClick: () => {
                 this.setState({ menuHidden: !this.state.menuHidden });
               }
             });
-          } else if (
-            areComponentsEqual(
-              childElement.type as React.ComponentType<any>,
-              DropdownContent
-            )
-          ) {
+          } else if (childElement.type === DropdownContent) {
             if (this.state.menuHidden) {
               return null;
             } else {
