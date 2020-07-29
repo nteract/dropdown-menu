@@ -19,9 +19,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "dependencies": {
-    "react-hot-loader": "^4.1.2"
-  },
+  "dependencies": {},
   "peerDependencies": {
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
